@@ -2,30 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Previene el zoom accidental al tocar la pantalla en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Zelda Ocarina</title>
   <style>
-    html, body { margin: 0; height: 100%; background: #111; color: #eee; }
-    #wrap { display: grid; place-items: center; height: 100%; }
-    #game { width: min(960px, 100%); height: min(720px, 85vh); background: #000; }
-    .hint { text-align: center; opacity: .7; font: 14px system-ui; margin-top: 8px; }
+    html, body { 
+      margin: 0; 
+      height: 100%; 
+      background: #000; 
+      color: #eee; 
+      overflow: hidden; 
+    }
+    #wrap { display: grid; place-items: center; height: 100vh; width: 100vw; }
+    #game { width: 100%; height: 100%; background: #000; }
   </style>
 </head>
 <body>
   <div id="wrap">
-    <div id="game">
-      <canvas id="canvas"></canvas>
-    </div>
-    <div class="hint">Cargando...</div>
+    <div id="game"></div>
   </div>
 
   <script>
     window.EJS_player = "#game";
     window.EJS_core = "n64";
     window.EJS_gameUrl = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/TLOFZ64.n64?v=2";
-    window.EJS_pathtodata = "https://www.emulatorjs.com/stable/data/";
+    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameName = "Zelda Ocarina of Time";
+
+    /* --- OPTIMIZACIONES DE RENDIMIENTO Y MÓVIL --- */
+    window.EJS_threads = true;          <!-- Activa soporte multihilo (WebAssembly Threads) si el chip del móvil lo permite -->
+    window.EJS_screenResolution = "native"; <!-- Mantiene la resolución nativa de N64 en lugar de reescalar por software -->
+    window.EJS_smooth = false;          <!-- Desactiva el filtrado bilineal suavizado (ahorra recursos gráficos de GPU) -->
+    window.EJS_virtualGamepad = true;   <!-- Fuerza los controles táctiles integrados en pantalla -->
   </script>
-  <script src="https://www.emulatorjs.com/stable/data/loader.js"></script>
+  <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </body>
 </html>
