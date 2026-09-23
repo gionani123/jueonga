@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>zelda ocarina</title>
+<style>
+html,body{margin:0;height:100%;background:#111;color:#eee}
+#wrap{display:grid;place-items:center;height:100%}
+#game{width:min(960px,100%);height:min(720px,85vh);background:#000}
+.hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="game"></div>
+  <div class="hint">Cargando…</div>
+</div>
+
+<script>
+  window.EJS_player      = "#game";
+  window.EJS_core        = "64";
+  window.EJS_gameUrl     = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/TLOFZ64.n64?v=2";
+  window.EJS_pathtodata  = "https://www.emulatorjs.com/";
+  window.EJS_gameName    = "Animal";
+</script>
+<script src="https://www.emulatorjs.com/loader.js"></script>
+
+
+
+</body>
+</html>
