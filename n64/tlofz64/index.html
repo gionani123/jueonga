@@ -2,41 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Zelda Ocarina</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     html, body { 
       margin: 0; 
       padding: 0;
       background: #000; 
       color: #eee; 
       width: 100%;
-      min-height: 100vh;
+      height: 100%;
+      overflow: hidden; /* Evita que los botones salgan del área visible */
+      touch-action: none;
     }
     #wrap { 
       display: flex; 
       flex-direction: column;
       align-items: center; 
-      justify-content: center;
-      width: 100%; 
-      min-height: 100vh; 
+      justify-content: space-between;
+      width: 100vw; 
+      height: 100vh; 
     }
     #game { 
       width: 100%; 
-      height: 80vh; /* Deja espacio para mover la pantalla */
-      max-width: 960px;
+      flex-grow: 1; /* El juego ocupa todo el espacio libre disponible */
       background: #000; 
+      position: relative;
     }
     .btn-fullscreen {
-      margin: 10px;
-      padding: 12px 24px;
-      font-size: 16px;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
       background: #2196F3;
       color: #fff;
       border: none;
-      border-radius: 6px;
       cursor: pointer;
       font-family: system-ui, sans-serif;
+      font-weight: bold;
+      z-index: 10;
     }
   </style>
 </head>
@@ -53,11 +59,15 @@
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameName = "Zelda Ocarina of Time";
 
-    /* --- CONFIGURACIÓN --- */
+    /* --- CONFIGURACIÓN DE RENDIMIENTO --- */
     window.EJS_threads = false;
     window.EJS_screenResolution = "native";
     window.EJS_smooth = false;
+
+    /* --- CONTROLES RESPONSIVOS PARA MÓVIL --- */
     window.EJS_virtualGamepad = true;
+    window.EJS_gamepadSize = 0.85; // Reduce ligeramente el tamaño de los botones para que quepan bien
+    window.EJS_gamepadOpacity = 0.7; // Transparencia para no tapar el juego
   </script>
   <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </body>
