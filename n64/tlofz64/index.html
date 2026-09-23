@@ -2,7 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- Previene el zoom accidental al tocar la pantalla en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Zelda Ocarina</title>
   <style>
@@ -12,7 +11,6 @@
       background: #000; 
       color: #eee; 
       overflow: hidden; 
-      touch-action: none;
     }
     #wrap { display: grid; place-items: center; height: 100vh; width: 100vw; }
     #game { width: 100%; height: 100%; background: #000; }
@@ -30,11 +28,11 @@
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameName = "Zelda Ocarina of Time";
 
-    /* --- OPTIMIZACIONES DE RENDIMIENTO Y MÓVIL --- */
-    window.EJS_threads = true;          // Activa soporte multihilo si el chip del móvil lo permite
-    window.EJS_screenResolution = "native"; // Mantiene la resolución nativa de N64
-    window.EJS_smooth = false;          // Desactiva el filtrado bilineal para mejorar FPS
-    window.EJS_virtualGamepad = true;   // Fuerza los controles táctiles integrados en pantalla
+    /* --- CONFIGURACIÓN COMPATIBLE CON GITHUB PAGES --- */
+    window.EJS_threads = false;             // Desactivado para evitar el error de SharedArrayBuffer
+    window.EJS_screenResolution = "native"; // Mantiene resolución nativa para optimizar GPU
+    window.EJS_smooth = false;              // Desactiva el suavizado para ganar cuadros por segundo
+    window.EJS_virtualGamepad = true;       // Muestra el control táctil en pantallas móviles
   </script>
   <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </body>
