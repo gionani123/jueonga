@@ -2,23 +2,48 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zelda Ocarina</title>
   <style>
     html, body { 
       margin: 0; 
-      height: 100%; 
+      padding: 0;
       background: #000; 
       color: #eee; 
-      overflow: hidden; 
+      width: 100%;
+      min-height: 100vh;
     }
-    #wrap { display: grid; place-items: center; height: 100vh; width: 100vw; }
-    #game { width: 100%; height: 100%; background: #000; }
+    #wrap { 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      width: 100%; 
+      min-height: 100vh; 
+    }
+    #game { 
+      width: 100%; 
+      height: 80vh; /* Deja espacio para mover la pantalla */
+      max-width: 960px;
+      background: #000; 
+    }
+    .btn-fullscreen {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+    }
   </style>
 </head>
 <body>
   <div id="wrap">
     <div id="game"></div>
+    <button class="btn-fullscreen" onclick="EJS_emulator.gameManager.requestFullscreen()">Pantalla Completa</button>
   </div>
 
   <script>
@@ -28,11 +53,11 @@
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_gameName = "Zelda Ocarina of Time";
 
-    /* --- CONFIGURACIÓN COMPATIBLE CON GITHUB PAGES --- */
-    window.EJS_threads = false;             // Desactivado para evitar el error de SharedArrayBuffer
-    window.EJS_screenResolution = "native"; // Mantiene resolución nativa para optimizar GPU
-    window.EJS_smooth = false;              // Desactiva el suavizado para ganar cuadros por segundo
-    window.EJS_virtualGamepad = true;       // Muestra el control táctil en pantallas móviles
+    /* --- CONFIGURACIÓN --- */
+    window.EJS_threads = false;
+    window.EJS_screenResolution = "native";
+    window.EJS_smooth = false;
+    window.EJS_virtualGamepad = true;
   </script>
   <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </body>
