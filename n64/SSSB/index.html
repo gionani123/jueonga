@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SSSB</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body { 
+      margin: 0; 
+      padding: 0;
+      background: #000; 
+      color: #eee; 
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Evita que los botones salgan del área visible */
+      touch-action: none;
+    }
+    #wrap { 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      justify-content: space-between;
+      width: 100vw; 
+      height: 100vh; 
+    }
+    #game { 
+      width: 100%; 
+      flex-grow: 1; /* El juego ocupa todo el espacio libre disponible */
+      background: #000; 
+      position: relative;
+    }
+    .btn-fullscreen {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      background: #2196F3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      font-weight: bold;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="game"></div>
+    <button class="btn-fullscreen" onclick="EJS_emulator.gameManager.requestFullscreen()">Pantalla Completa</button>
+  </div>
+
+  <script>
+    window.EJS_player = "#game";
+    window.EJS_core = "n64";
+    window.EJS_gameUrl = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/SSSB.n64?v=2";
+    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+    window.EJS_gameName = "SSSB";
+
+    /* --- CONFIGURACIÓN DE RENDIMIENTO --- */
+    window.EJS_threads = false;
+    window.EJS_screenResolution = "native";
+    window.EJS_smooth = false;
+
+    /* --- CONTROLES RESPONSIVOS PARA MÓVIL --- */
+    window.EJS_virtualGamepad = true;
+    window.EJS_gamepadSize = 0.85; // Reduce ligeramente el tamaño de los botones para que quepan bien
+    window.EJS_gamepadOpacity = 0.7; // Transparencia para no tapar el juego
+  </script>
+  <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+</body>
+</html>
