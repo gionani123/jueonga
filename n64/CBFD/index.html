@@ -52,12 +52,17 @@
     <button class="btn-fullscreen" onclick="EJS_emulator.gameManager.requestFullscreen()">Pantalla Completa</button>
   </div>
 
-  <script>
-    window.EJS_player = "#game";
-    window.EJS_core = "n64";
-    window.EJS_gameUrl = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/CBFD.z64?v=2";
-    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-    window.EJS_gameName = "Conker Bad Fur day";
+
+    <script>
+      window.EJS_player      = "#game";
+      window.EJS_core        = "n64";
+      window.EJS_gameUrl     = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/CBFD.z64?v=2"     // sube el numero siempre que edites
+      window.EJS_pathtodata  = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
+      window.EJS_gameName    = "Conker Bad Fur Day";
+      window.EJS_backgroundImage = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/n64/image1.png";
+    </script>
+  
+    <script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
 
     /* --- CONFIGURACIÓN DE RENDIMIENTO --- */
     window.EJS_threads = false;
