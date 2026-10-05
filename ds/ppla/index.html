@@ -8,6 +8,11 @@
 html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
 #wrap{display:grid;place-items:center;height:100%}
 #game{width:min(960px,100%);height:min(720px,85vh);background:#000}
+
+/* Permite que el toque del dedo atraviese la capa flotante de botones e impacte el canvas NDS */
+.ejs_touch_controls { pointer-events: none !important; }
+.ejs_touch_controls * { pointer-events: auto !important; }
+#game canvas { pointer-events: auto !important; touch-action: none !important; }
 .hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
 </style>
 </head>
@@ -25,12 +30,12 @@ html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
   window.EJS_gameName        = "Platino";
   window.EJS_backgroundImage = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
   
-  // PERMITE PASAR LOS CLICS Y TOQUES SOBRE EL CANVAS A PESAR DE LOS BOTONES VIRTUALES
   window.EJS_mouseOnCanvas   = true;
   window.EJS_NDS_touchMode   = true;
 
+  // Ajuste de traducción de puntero para desmume y melonds en móvil
   window.EJS_coreOpts = {
-    "desmume_pointer_type": "touch",
+    "desmume_pointer_type": "pointer",
     "melonds_touch_mode": "touch"
   };
 </script>
