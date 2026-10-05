@@ -8,7 +8,6 @@
 html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
 #wrap{display:grid;place-items:center;height:100%}
 #game{width:min(960px,100%);height:min(720px,85vh);background:#000}
-#game * { touch-action: none !important; }
 .hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
 </style>
 </head>
@@ -26,20 +25,14 @@ html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
   window.EJS_gameName        = "Platino";
   window.EJS_backgroundImage = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
   
-  // Activa el modo de pantalla táctil directa
+  // PERMITE PASAR LOS CLICS Y TOQUES SOBRE EL CANVAS A PESAR DE LOS BOTONES VIRTUALES
+  window.EJS_mouseOnCanvas   = true;
   window.EJS_NDS_touchMode   = true;
 
-  // Escuchador global para traducir toques de celular a clics de ratón dentro del canvas
-  window.addEventListener('touchstart', function(e) {
-    if (e.target.tagName === 'CANVAS') {
-      var touch = e.touches[0];
-      var mouseEvent = new MouseEvent('mousedown', {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      e.target.dispatchEvent(mouseEvent);
-    }
-  }, { passive: false });
+  window.EJS_coreOpts = {
+    "desmume_pointer_type": "touch",
+    "melonds_touch_mode": "touch"
+  };
 </script>
 <script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
 </body>
