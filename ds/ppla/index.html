@@ -1,133 +1,37 @@
+
+
 <!doctype html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
->
-
-<title>Platino</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>perla</title>
 <style>
-
-html,
-body {
-  margin: 0;
-  height: 100%;
-  background: #111;
-  color: #eee;
-  overflow: hidden;
-}
-
-#wrap {
-  display: grid;
-  place-items: center;
-  height: 100%;
-}
-
-#game {
-  width: min(960px, 100%);
-  height: min(720px, 85vh);
-  background: #000;
-}
-
-.ejs_touch_controls {
-  pointer-events: none !important;
-}
-
-.ejs_touch_controls * {
-  pointer-events: auto !important;
-}
-
-#game canvas {
-  pointer-events: auto !important;
-  touch-action: none !important;
-}
-
-.hint {
-  text-align: center;
-  opacity: .7;
-  font: 14px system-ui;
-  margin-top: 8px;
-}
-
+html,body{margin:0;height:100%;background:#111;color:#eee}
+#wrap{display:grid;place-items:center;height:100%}
+#game{width:min(960px,100%);height:min(720px,85vh);background:#000}
+.hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
 </style>
-
 </head>
-
 <body>
-
 <div id="wrap">
-
   <div id="game"></div>
-
-  <div class="hint">
-    Cargando…
-  </div>
-
+  <div class="hint">Cargando…</div>
 </div>
 
-
 <script>
-
-/* ================================
-   JUEGO
-================================ */
-
-window.EJS_player = "#game";
-
-window.EJS_core = "nds";
-
-window.EJS_gameUrl =
-  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
-
-
-/*
- * IMPORTANTE:
- * Dejamos los archivos del emulador
- * apuntando a TU R2.
- */
-
-window.EJS_pathtodata =
-  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
-
-
-window.EJS_gameName = "Platino";
-
-window.EJS_backgroundImage =
-  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
-
-
-/* ================================
-   TOUCH NDS
-================================ */
-
-window.EJS_mouseOnCanvas = true;
-
-window.EJS_NDS_touchMode = true;
-
-window.EJS_coreOpts = {
-
-  "desmume_pointer_type": "touch",
-
-  "melonds_touch_mode": "touch"
-
-};
-
+  window.EJS_player      = "#game";
+  window.EJS_core        = "nds";
+  window.EJS_gameUrl     = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
+  window.EJS_pathtodata  = "https://www.emulatorjs.com/";
+  window.EJS_gameName    = "Platino";
 </script>
+<script src="https://www.emulatorjs.com/loader.js"></script>
 
 
-<!--
-====================================
-LOADER OFICIAL 4.2.3
-====================================
--->
 
-<script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script>
+</body>
+</html>
 
 </body>
 
