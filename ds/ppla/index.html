@@ -2,12 +2,11 @@
 <html>
 
 <head>
-
 <meta charset="utf-8">
 
 <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 >
 
 <title>Platino</title>
@@ -16,333 +15,137 @@
 
 html,
 body {
-    margin: 0;
-    height: 100%;
-    background: #111;
-    color: #eee;
-    overflow: hidden;
+  margin: 0;
+  height: 100%;
+  background: #111;
+  color: #eee;
+  overflow: hidden;
 }
 
 #wrap {
-    display: grid;
-    place-items: center;
-    height: 100%;
+  display: grid;
+  place-items: center;
+  height: 100%;
 }
 
 #game {
-    width: min(960px, 100%);
-    height: min(720px, 85vh);
-    background: #000;
+  width: min(960px, 100%);
+  height: min(720px, 85vh);
+  background: #000;
 }
 
 /*
- * Permite que el toque atraviese la capa
- * flotante de botones e impacte el canvas NDS.
+ * Permite que los controles táctiles de EmulatorJS
+ * funcionen normalmente.
  */
-
 .ejs_touch_controls {
-    pointer-events: none !important;
+  pointer-events: none !important;
 }
 
 .ejs_touch_controls * {
-    pointer-events: auto !important;
+  pointer-events: auto !important;
 }
 
 #game canvas {
-    pointer-events: auto !important;
-    touch-action: none !important;
+  pointer-events: auto !important;
+  touch-action: none !important;
 }
 
 .hint {
-    text-align: center;
-    opacity: .7;
-    font: 14px system-ui;
-    margin-top: 8px;
+  text-align: center;
+  opacity: .7;
+  font: 14px system-ui;
+  margin-top: 8px;
 }
 
 </style>
-
 </head>
+
 
 <body>
 
 <div id="wrap">
 
-    <div id="game"></div>
+  <div id="game"></div>
 
-    <div class="hint">
-        Cargando…
-    </div>
+  <div class="hint">
+    Cargando…
+  </div>
 
 </div>
 
 
 <script>
 
-/* ================================
-   CONFIGURACIÓN EMULATORJS
-================================ */
+/* ==========================================
+   EMULATORJS
+   ========================================== */
 
 window.EJS_player = "#game";
 
 window.EJS_core = "nds";
 
+
+/* ==========================================
+   ROM
+   ========================================== */
+
 window.EJS_gameUrl =
-    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
+  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
+
+
+/* ==========================================
+   EMULATORJS 4.2.3 OFICIAL
+   ========================================== */
 
 window.EJS_pathtodata =
-    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
+  "https://cdn.emulatorjs.org/4.2.3/data/";
+
+
+/* ==========================================
+   NOMBRE DEL JUEGO
+   ========================================== */
 
 window.EJS_gameName = "Platino";
 
+
+/* ==========================================
+   IMAGEN DE FONDO
+   ========================================== */
+
 window.EJS_backgroundImage =
-    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
+  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
 
 
-/* ================================
+/* ==========================================
    INPUT
-================================ */
+   ========================================== */
 
 window.EJS_mouseOnCanvas = true;
 
 window.EJS_NDS_touchMode = true;
 
 
-/*
- * Configuración del puntero NDS.
- */
+/* ==========================================
+   CONFIGURACIÓN DEL PUNTERO NDS
+   ========================================== */
 
 window.EJS_coreOpts = {
 
-    "desmume_pointer_type": "touch",
+  "desmume_pointer_type": "touch",
 
-    "melonds_touch_mode": "touch"
+  "melonds_touch_mode": "touch"
 
 };
 
 </script>
 
 
-<!-- =================================
-     EMULATORJS
-================================= -->
+<!-- ==========================================
+     LOADER OFICIAL EMULATORJS 4.2.3
+     ========================================== -->
 
-<script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
-
-
-<!-- =================================
-     DIAGNÓSTICO TOUCH / S PEN
-================================= -->
-
-<script>
-
-console.log("=================================");
-console.log(" NDS TOUCH DIAGNOSTIC");
-console.log("=================================");
-
-
-/*
- * TOUCH EVENTS
- *
- * Estos eventos corresponden principalmente
- * al dedo en teléfonos Android.
- */
-
-document.addEventListener(
-    "touchstart",
-    function(e) {
-
-        const t = e.touches[0];
-
-        if (!t) return;
-
-        console.log(
-            "[TOUCH START]",
-            "x:",
-            t.clientX,
-            "y:",
-            t.clientY
-        );
-
-    },
-    { passive: true }
-);
-
-
-document.addEventListener(
-    "touchmove",
-    function(e) {
-
-        const t = e.touches[0];
-
-        if (!t) return;
-
-        console.log(
-            "[TOUCH MOVE]",
-            "x:",
-            t.clientX,
-            "y:",
-            t.clientY
-        );
-
-    },
-    { passive: true }
-);
-
-
-document.addEventListener(
-    "touchend",
-    function() {
-
-        console.log(
-            "[TOUCH END]"
-        );
-
-    },
-    { passive: true }
-);
-
-
-/*
- * POINTER EVENTS
- *
- * Aquí podremos distinguir:
- *
- * dedo  -> pointerType = "touch"
- * S Pen -> pointerType = "pen"
- * mouse -> pointerType = "mouse"
- */
-
-document.addEventListener(
-    "pointerdown",
-    function(e) {
-
-        console.log(
-            "[POINTER DOWN]",
-            "type:",
-            e.pointerType,
-            "x:",
-            e.clientX,
-            "y:",
-            e.clientY,
-            "button:",
-            e.button
-        );
-
-    },
-    true
-);
-
-
-document.addEventListener(
-    "pointermove",
-    function(e) {
-
-        /*
-         * Para no llenar demasiado la consola,
-         * solamente mostramos movimientos del lápiz
-         * o del dedo cuando sea necesario.
-         */
-
-        if (
-            e.pointerType === "pen" ||
-            e.pointerType === "touch"
-        ) {
-
-            console.log(
-                "[POINTER MOVE]",
-                "type:",
-                e.pointerType,
-                "x:",
-                e.clientX,
-                "y:",
-                e.clientY
-            );
-
-        }
-
-    },
-    true
-);
-
-
-document.addEventListener(
-    "pointerup",
-    function(e) {
-
-        console.log(
-            "[POINTER UP]",
-            "type:",
-            e.pointerType,
-            "x:",
-            e.clientX,
-            "y:",
-            e.clientY
-        );
-
-    },
-    true
-);
-
-
-/*
- * Cuando EmulatorJS haya creado el canvas,
- * mostramos información sobre él.
- */
-
-function detectarCanvas() {
-
-    const canvas =
-        document.querySelector("#game canvas");
-
-    if (!canvas) {
-
-        setTimeout(
-            detectarCanvas,
-            500
-        );
-
-        return;
-    }
-
-    console.log(
-        "================================="
-    );
-
-    console.log(
-        "[CANVAS ENCONTRADO]"
-    );
-
-    console.log(
-        "width:",
-        canvas.width
-    );
-
-    console.log(
-        "height:",
-        canvas.height
-    );
-
-    console.log(
-        "CSS width:",
-        canvas.getBoundingClientRect().width
-    );
-
-    console.log(
-        "CSS height:",
-        canvas.getBoundingClientRect().height
-    );
-
-    console.log(
-        "================================="
-    );
-
-}
-
-detectarCanvas();
-
-</script>
+<script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script>
 
 </body>
-
 </html>
