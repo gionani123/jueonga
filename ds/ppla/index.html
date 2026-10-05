@@ -2,21 +2,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-<!-- 1. Desactiva el zoom y gestos por defecto del navegador en móviles -->
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Platino</title>
 <style>
 html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
 #wrap{display:grid;place-items:center;height:100%}
 #game{width:min(960px,100%);height:min(720px,85vh);background:#000}
-
-/* 2. Captura obligatoria de eventos táctiles en el canvas para móviles */
-#game canvas, #game iframe {
-  touch-action: none !important;
-  -webkit-touch-callout: none !important;
-  -webkit-user-select: none !important;
-  user-select: none !important;
-}
+#game * { touch-action: none !important; }
 .hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
 </style>
 </head>
@@ -34,13 +26,20 @@ html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
   window.EJS_gameName        = "Platino";
   window.EJS_backgroundImage = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
   
-  // 3. Forzar el modo táctil unificado
+  // Activa el modo de pantalla táctil directa
   window.EJS_NDS_touchMode   = true;
 
-  window.EJS_coreOpts = {
-    "desmume_pointer_type": "touch",
-    "melonds_touch_mode": "touch"
-  };
+  // Escuchador global para traducir toques de celular a clics de ratón dentro del canvas
+  window.addEventListener('touchstart', function(e) {
+    if (e.target.tagName === 'CANVAS') {
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      e.target.dispatchEvent(mouseEvent);
+    }
+  }, { passive: false });
 </script>
 <script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
 </body>
