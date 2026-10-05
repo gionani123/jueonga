@@ -35,7 +35,11 @@ body {
     background: #000;
 }
 
-/* Controles táctiles */
+/*
+ * Permite que el toque atraviese la capa
+ * flotante de botones e impacte el canvas NDS.
+ */
+
 .ejs_touch_controls {
     pointer-events: none !important;
 }
@@ -72,7 +76,12 @@ body {
 
 </div>
 
+
 <script>
+
+/* ================================
+   CONFIGURACIÓN EMULATORJS
+================================ */
 
 window.EJS_player = "#game";
 
@@ -82,25 +91,257 @@ window.EJS_gameUrl =
     "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
 
 window.EJS_pathtodata =
-    "https://cdn.emulatorjs.org/4.0.9/data/";
+    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
 
 window.EJS_gameName = "Platino";
 
 window.EJS_backgroundImage =
     "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
 
+
+/* ================================
+   INPUT
+================================ */
+
 window.EJS_mouseOnCanvas = true;
 
 window.EJS_NDS_touchMode = true;
 
+
+/*
+ * Configuración del puntero NDS.
+ */
+
 window.EJS_coreOpts = {
+
     "desmume_pointer_type": "touch",
+
     "melonds_touch_mode": "touch"
+
 };
 
 </script>
 
-<script src="https://cdn.emulatorjs.org/4.0.9/data/loader.js"></script>
+
+<!-- =================================
+     EMULATORJS
+================================= -->
+
+<script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
+
+
+<!-- =================================
+     DIAGNÓSTICO TOUCH / S PEN
+================================= -->
+
+<script>
+
+console.log("=================================");
+console.log(" NDS TOUCH DIAGNOSTIC");
+console.log("=================================");
+
+
+/*
+ * TOUCH EVENTS
+ *
+ * Estos eventos corresponden principalmente
+ * al dedo en teléfonos Android.
+ */
+
+document.addEventListener(
+    "touchstart",
+    function(e) {
+
+        const t = e.touches[0];
+
+        if (!t) return;
+
+        console.log(
+            "[TOUCH START]",
+            "x:",
+            t.clientX,
+            "y:",
+            t.clientY
+        );
+
+    },
+    { passive: true }
+);
+
+
+document.addEventListener(
+    "touchmove",
+    function(e) {
+
+        const t = e.touches[0];
+
+        if (!t) return;
+
+        console.log(
+            "[TOUCH MOVE]",
+            "x:",
+            t.clientX,
+            "y:",
+            t.clientY
+        );
+
+    },
+    { passive: true }
+);
+
+
+document.addEventListener(
+    "touchend",
+    function() {
+
+        console.log(
+            "[TOUCH END]"
+        );
+
+    },
+    { passive: true }
+);
+
+
+/*
+ * POINTER EVENTS
+ *
+ * Aquí podremos distinguir:
+ *
+ * dedo  -> pointerType = "touch"
+ * S Pen -> pointerType = "pen"
+ * mouse -> pointerType = "mouse"
+ */
+
+document.addEventListener(
+    "pointerdown",
+    function(e) {
+
+        console.log(
+            "[POINTER DOWN]",
+            "type:",
+            e.pointerType,
+            "x:",
+            e.clientX,
+            "y:",
+            e.clientY,
+            "button:",
+            e.button
+        );
+
+    },
+    true
+);
+
+
+document.addEventListener(
+    "pointermove",
+    function(e) {
+
+        /*
+         * Para no llenar demasiado la consola,
+         * solamente mostramos movimientos del lápiz
+         * o del dedo cuando sea necesario.
+         */
+
+        if (
+            e.pointerType === "pen" ||
+            e.pointerType === "touch"
+        ) {
+
+            console.log(
+                "[POINTER MOVE]",
+                "type:",
+                e.pointerType,
+                "x:",
+                e.clientX,
+                "y:",
+                e.clientY
+            );
+
+        }
+
+    },
+    true
+);
+
+
+document.addEventListener(
+    "pointerup",
+    function(e) {
+
+        console.log(
+            "[POINTER UP]",
+            "type:",
+            e.pointerType,
+            "x:",
+            e.clientX,
+            "y:",
+            e.clientY
+        );
+
+    },
+    true
+);
+
+
+/*
+ * Cuando EmulatorJS haya creado el canvas,
+ * mostramos información sobre él.
+ */
+
+function detectarCanvas() {
+
+    const canvas =
+        document.querySelector("#game canvas");
+
+    if (!canvas) {
+
+        setTimeout(
+            detectarCanvas,
+            500
+        );
+
+        return;
+    }
+
+    console.log(
+        "================================="
+    );
+
+    console.log(
+        "[CANVAS ENCONTRADO]"
+    );
+
+    console.log(
+        "width:",
+        canvas.width
+    );
+
+    console.log(
+        "height:",
+        canvas.height
+    );
+
+    console.log(
+        "CSS width:",
+        canvas.getBoundingClientRect().width
+    );
+
+    console.log(
+        "CSS height:",
+        canvas.getBoundingClientRect().height
+    );
+
+    console.log(
+        "================================="
+    );
+
+}
+
+detectarCanvas();
+
+</script>
 
 </body>
 
