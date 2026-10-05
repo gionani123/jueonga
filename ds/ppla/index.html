@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
 <meta charset="utf-8">
 
 <meta
@@ -34,10 +35,6 @@ body {
   background: #000;
 }
 
-/*
- * Permite que los controles táctiles de EmulatorJS
- * funcionen normalmente.
- */
 .ejs_touch_controls {
   pointer-events: none !important;
 }
@@ -59,8 +56,8 @@ body {
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
@@ -77,58 +74,41 @@ body {
 
 <script>
 
-/* ==========================================
-   EMULATORJS
-   ========================================== */
+/* ================================
+   JUEGO
+================================ */
 
 window.EJS_player = "#game";
 
 window.EJS_core = "nds";
 
-
-/* ==========================================
-   ROM
-   ========================================== */
-
 window.EJS_gameUrl =
   "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
 
 
-/* ==========================================
-   EMULATORJS 4.2.3 OFICIAL
-   ========================================== */
+/*
+ * IMPORTANTE:
+ * Dejamos los archivos del emulador
+ * apuntando a TU R2.
+ */
 
 window.EJS_pathtodata =
-  "https://cdn.emulatorjs.org/4.2.3/data/";
+  "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
 
-
-/* ==========================================
-   NOMBRE DEL JUEGO
-   ========================================== */
 
 window.EJS_gameName = "Platino";
-
-
-/* ==========================================
-   IMAGEN DE FONDO
-   ========================================== */
 
 window.EJS_backgroundImage =
   "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
 
 
-/* ==========================================
-   INPUT
-   ========================================== */
+/* ================================
+   TOUCH NDS
+================================ */
 
 window.EJS_mouseOnCanvas = true;
 
 window.EJS_NDS_touchMode = true;
-
-
-/* ==========================================
-   CONFIGURACIÓN DEL PUNTERO NDS
-   ========================================== */
 
 window.EJS_coreOpts = {
 
@@ -141,11 +121,14 @@ window.EJS_coreOpts = {
 </script>
 
 
-<!-- ==========================================
-     LOADER OFICIAL EMULATORJS 4.2.3
-     ========================================== -->
+<!--
+====================================
+LOADER OFICIAL 4.2.3
+====================================
+-->
 
 <script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script>
 
 </body>
+
 </html>
