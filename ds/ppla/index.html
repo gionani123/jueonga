@@ -1,44 +1,107 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Platino</title>
-<style>
-html,body{margin:0;height:100%;background:#111;color:#eee;overflow:hidden}
-#wrap{display:grid;place-items:center;height:100%}
-#game{width:min(960px,100%);height:min(720px,85vh);background:#000}
 
-/* Permite que el toque del dedo atraviese la capa flotante de botones e impacte el canvas NDS */
-.ejs_touch_controls { pointer-events: none !important; }
-.ejs_touch_controls * { pointer-events: auto !important; }
-#game canvas { pointer-events: auto !important; touch-action: none !important; }
-.hint{text-align:center;opacity:.7;font:14px system-ui;margin-top:8px}
+<head>
+
+<meta charset="utf-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+>
+
+<title>Platino</title>
+
+<style>
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background: #111;
+    color: #eee;
+    overflow: hidden;
+}
+
+#wrap {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+#game {
+    width: min(960px, 100%);
+    height: min(720px, 85vh);
+    background: #000;
+}
+
+/* Controles táctiles */
+.ejs_touch_controls {
+    pointer-events: none !important;
+}
+
+.ejs_touch_controls * {
+    pointer-events: auto !important;
+}
+
+#game canvas {
+    pointer-events: auto !important;
+    touch-action: none !important;
+}
+
+.hint {
+    text-align: center;
+    opacity: .7;
+    font: 14px system-ui;
+    margin-top: 8px;
+}
+
 </style>
+
 </head>
+
 <body>
+
 <div id="wrap">
-  <div id="game"></div>
-  <div class="hint">Cargando…</div>
+
+    <div id="game"></div>
+
+    <div class="hint">
+        Cargando…
+    </div>
+
 </div>
 
 <script>
-  window.EJS_player          = "#game";
-  window.EJS_core            = "nds";
-  window.EJS_gameUrl         = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
-  window.EJS_pathtodata      = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/";
-  window.EJS_gameName        = "Platino";
-  window.EJS_backgroundImage = "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
-  
-  window.EJS_mouseOnCanvas = true;
-  window.EJS_NDS_touchMode = true;
 
-  window.EJS_coreOpts = {
+window.EJS_player = "#game";
+
+window.EJS_core = "nds";
+
+window.EJS_gameUrl =
+    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/PPLA.nds";
+
+window.EJS_pathtodata =
+    "https://cdn.emulatorjs.org/4.0.9/data/";
+
+window.EJS_gameName = "Platino";
+
+window.EJS_backgroundImage =
+    "https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/image/nds/giratina.jpg";
+
+window.EJS_mouseOnCanvas = true;
+
+window.EJS_NDS_touchMode = true;
+
+window.EJS_coreOpts = {
     "desmume_pointer_type": "touch",
     "melonds_touch_mode": "touch"
-  };
-  
+};
+
 </script>
-<script src="https://pub-02e1345ecdc6416c8f29abb18d8cddf8.r2.dev/data/loader.js"></script>
+
+<script src="https://cdn.emulatorjs.org/4.0.9/data/loader.js"></script>
+
 </body>
+
 </html>
